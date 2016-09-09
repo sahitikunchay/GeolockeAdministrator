@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.example.geolockeadministrator.beans.IBeacon;
 import com.example.geolockeadministrator.beans.ScanIBeacon;
 
 import java.util.ArrayList;
@@ -19,7 +20,10 @@ import java.util.ArrayList;
 public class BleScanService extends Service{
 
     BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    ArrayList<ScanIBeacon> mBleScanBeaconArrayList = new ArrayList<ScanIBeacon>();
+    ArrayList<IBeacon> mIBeaconArrayList = new ArrayList<IBeacon>();
+    ArrayList<Integer> mRssiArrayList = new ArrayList<Integer>();
+    //BleBeaconScan mBleBeaconScan;
+    ScanIBeacon mScanIBeacon;
     public static int sClear = 0;
     private IBinder mBinder = new BleScanServiceBinder();
 
@@ -92,15 +96,19 @@ public class BleScanService extends Service{
 
 
                             if(sClear ==1){
-                                mBleScanBeaconArrayList.clear();
+                                mIBeaconArrayList.clear();
+                                mRssiArrayList.clear();
                                 sClear =0;
                             }
 
-                            ScanIBeacon mBleScanBeacon  = new ScanIBeacon(device.getAddress(), uuid, device.getName(), major, minor);
-                            mBleScanBeaconArrayList.add(mBleScanBeacon);
+                            IBeacon iBeacon = new IBeacon(device.getAddress(),uuid,device.getName(),major,minor);
+                            mIBeaconArrayList.add(iBeacon);
+                            mRssiArrayList.add(rssi);
+
+                            mScanIBeacon = new ScanIBeacon(mIBeaconArrayList,mRssiArrayList);
 
                             Intent intent = new Intent();
-                            intent.putExtra("BLE_SCAN",mBleScanBeaconArrayList.get(0));
+                            intent.putExtra("BLE_SCAN",mScanIBeacon);
                             intent.setAction("BLE_SCAN_BROADCAST");
                             sendBroadcast(intent);
                         }

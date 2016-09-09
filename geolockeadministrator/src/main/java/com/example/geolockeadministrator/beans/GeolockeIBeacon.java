@@ -8,13 +8,16 @@ import android.os.Parcelable;
  */
 public class GeolockeIBeacon implements Parcelable{
 
+    private final String macAddress;
     private final double mLatitude;
     private final double mLogitude;
     private final int mOrganizationId;
     private final int mBuildingId;
     private final int mLevelId;
 
+
     protected GeolockeIBeacon(Parcel in) {
+        macAddress = in.readString();
         mLatitude = in.readDouble();
         mLogitude = in.readDouble();
         mOrganizationId = in.readInt();
@@ -24,6 +27,7 @@ public class GeolockeIBeacon implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(macAddress);
         dest.writeDouble(mLatitude);
         dest.writeDouble(mLogitude);
         dest.writeInt(mOrganizationId);
@@ -48,12 +52,17 @@ public class GeolockeIBeacon implements Parcelable{
         }
     };
 
-    public GeolockeIBeacon(double pLatitude, double pLogitude, int pOrganizationId, int pBuildingId, int pLevelId) {
+    public GeolockeIBeacon(String pMacAddress, double pLatitude, double pLogitude, int pOrganizationId, int pBuildingId, int pLevelId) {
+        macAddress = pMacAddress;
         mLatitude = pLatitude;
         mLogitude = pLogitude;
         mOrganizationId = pOrganizationId;
         mBuildingId = pBuildingId;
         mLevelId = pLevelId;
+    }
+
+    public String getMacAddress() {
+        return macAddress;
     }
 
     public double getLatitude() {
@@ -85,9 +94,7 @@ public class GeolockeIBeacon implements Parcelable{
 
         if (Double.compare(that.mLatitude, mLatitude) != 0) return false;
         if (Double.compare(that.mLogitude, mLogitude) != 0) return false;
-        if (mOrganizationId != that.mOrganizationId) return false;
-        if (mBuildingId != that.mBuildingId) return false;
-        return mLevelId == that.mLevelId;
+        return macAddress.equals(that.macAddress);
 
     }
 
@@ -95,20 +102,19 @@ public class GeolockeIBeacon implements Parcelable{
     public int hashCode() {
         int result;
         long temp;
+        result = macAddress.hashCode();
         temp = Double.doubleToLongBits(mLatitude);
-        result = (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(mLogitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + mOrganizationId;
-        result = 31 * result + mBuildingId;
-        result = 31 * result + mLevelId;
         return result;
     }
 
     @Override
     public String toString() {
         return "GeolockeIBeacon{" +
-                "mLatitude=" + mLatitude +
+                "macAddress='" + macAddress + '\'' +
+                ", mLatitude=" + mLatitude +
                 ", mLogitude=" + mLogitude +
                 ", mOrganizationId=" + mOrganizationId +
                 ", mBuildingId=" + mBuildingId +

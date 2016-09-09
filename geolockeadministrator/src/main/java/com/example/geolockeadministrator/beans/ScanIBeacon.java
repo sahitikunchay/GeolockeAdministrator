@@ -1,25 +1,23 @@
 package com.example.geolockeadministrator.beans;
 
+import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.util.ArrayList;
 
 /**
  * Created by ACER on 9/3/2016.
  */
 public class ScanIBeacon implements Parcelable{
 
-    private final String mMacAddress;
-    private final String mUuid;
-    private final String mName;
-    private final int mMajor;
-    private final int mMinor;
+    private ArrayList<IBeacon> mIBeaconArrayList;
+    private ArrayList<Integer> mRssiList;
 
-    protected ScanIBeacon(Parcel in) {
-        mMacAddress = in.readString();
-        mUuid = in.readString();
-        mName = in.readString();
-        mMajor = in.readInt();
-        mMinor = in.readInt();
+
+    protected ScanIBeacon(Parcel pParcel) {
+        mIBeaconArrayList = pParcel.readArrayList(IBeacon.class.getClassLoader());
+        mRssiList = pParcel.readArrayList(int.class.getClassLoader());
     }
 
     public static final Creator<ScanIBeacon> CREATOR = new Creator<ScanIBeacon>() {
@@ -41,39 +39,21 @@ public class ScanIBeacon implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel pParcel, int pI) {
-        pParcel.writeString(mMacAddress);
-        pParcel.writeString(mUuid);
-        pParcel.writeString(mName);
-        pParcel.writeInt(mMajor);
-        pParcel.writeInt(mMinor);
+        pParcel.writeList(mIBeaconArrayList);
+        pParcel.writeList(mRssiList);
     }
 
-    public ScanIBeacon(String pMacAddress, String pUuid, String pName, int pMajor, int pMinor) {
-        mMacAddress = pMacAddress;
-        mUuid = pUuid;
-        mName = pName;
-        mMajor = pMajor;
-        mMinor = pMinor;
+    public ScanIBeacon(ArrayList<IBeacon> pIBeaconArrayList, ArrayList<Integer> pRssiList) {
+        mIBeaconArrayList = pIBeaconArrayList;
+        mRssiList = pRssiList;
     }
 
-    public String getMacAddress() {
-        return mMacAddress;
+    public ArrayList<IBeacon> getIBeaconArrayList() {
+        return mIBeaconArrayList;
     }
 
-    public String getUuid() {
-        return mUuid;
-    }
-
-    public String getName() {
-        return mName;
-    }
-
-    public int getMajor() {
-        return mMajor;
-    }
-
-    public int getMinor() {
-        return mMinor;
+    public ArrayList<Integer> getRssiList() {
+        return mRssiList;
     }
 
     @Override
@@ -83,23 +63,23 @@ public class ScanIBeacon implements Parcelable{
 
         ScanIBeacon that = (ScanIBeacon) pO;
 
-        return mMacAddress.equals(that.mMacAddress);
+        if (!mIBeaconArrayList.equals(that.mIBeaconArrayList)) return false;
+        return mRssiList.equals(that.mRssiList);
 
     }
 
     @Override
     public int hashCode() {
-        return mMacAddress.hashCode();
+        int result = mIBeaconArrayList.hashCode();
+        result = 31 * result + mRssiList.hashCode();
+        return result;
     }
 
     @Override
     public String toString() {
         return "ScanIBeacon{" +
-                "mMacAddress='" + mMacAddress + '\'' +
-                ", mUuid='" + mUuid + '\'' +
-                ", mName='" + mName + '\'' +
-                ", mMajor=" + mMajor +
-                ", mMinor=" + mMinor +
+                "mIBeaconArrayList=" + mIBeaconArrayList +
+                ", mRssiList=" + mRssiList +
                 '}';
     }
 }
