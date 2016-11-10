@@ -9,7 +9,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         >
-
+        <service
+            android:name="com.example.geolockeadministrator.services.BleScanService"
+            android:exported="false"/>
+        <service
+            android:name="com.example.geolockeadministrator.services.ParseService"
+            android:exported="false"/>
+        <service
+            android:name="com.example.geolockeadministrator.services.GeolockeIBeaconParserService"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.acer.geolockeadministrator">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
 
     <application
         android:allowBackup="true"
@@ -8,12 +11,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <provider
+            android:authorities="com.geolocke.android.geolockeadmin.geolockeibeacons.provider"
+            android:name="com.example.geolockeadministrator.ContentProvider.GeolockeIBeaconsContentProvider"/>
+        <activity android:name=".BuildingAndLevelSelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".LevelPlanWithConfiguredBeaconsActivity">
+        </activity>
+        <activity android:name=".ModificationActivity">
+        </activity>
+        <activity android:name=".ScanActivity">
+        </activity>
+        <activity android:name=".ContentProviderDemo">
         </activity>
     </application>
 

@@ -15,6 +15,9 @@ import com.example.geolockeadministrator.beans.GeolockeIBeaconScan;
 import com.example.geolockeadministrator.beans.IBeacon;
 import com.example.geolockeadministrator.beans.ScanIBeacon;
 
+import java.math.BigInteger;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -96,20 +99,22 @@ public class GeolockeIBeaconParserService extends Service{
                 Float f = Float.intBitsToFloat(l.intValue());
                 Double latitude = Double.valueOf(f);
 
+                //last 8 digits are fixed as 0000;
                 String lng = split[1]+split[2];
                 Long j = Long.parseLong(lng, 16);
                 Float k = Float.intBitsToFloat(j.intValue());
                 Double longitude = Double.valueOf(k);
 
                 // TODO: 31-07-2016 store buildingId and floorId somewhere
-                String buildingIdd = split[3];
-                int buildingId = Integer.parseInt(buildingIdd);
-                String floorId = split[4].substring(0, 4);
-                int levelId = Integer.parseInt(floorId);
-
+                String buildingIdAndFloorId = split[3];
+                int buildingId = (int ) Long.parseLong(buildingIdAndFloorId.substring(0, 2), 16);
+                int levelId = (int) Long.parseLong(buildingIdAndFloorId.substring(2, 4), 16);
+                /*String floorId = split[4].substring(0, 4);
+                int levelId = Integer.parseInt(floorId);*/
+                int geofenceid = 0; //TODO: change
 
                 //GeolockeIBeacon geolockeIBeacon = new GeolockeIBeacon(iBeacon.getMacAddress(),iBeacon.getUuid(),iBeacon.getName(),iBeacon.getMajor(),iBeacon.getMinor(),latitude,longitude);
-                GeolockeIBeacon geolockeIBeacon = new GeolockeIBeacon(iBeacon.getMacAddress(), latitude, longitude,1 ,buildingId, levelId);
+                GeolockeIBeacon geolockeIBeacon = new GeolockeIBeacon(iBeacon.getMacAddress(),iBeacon.getUuid(), latitude, longitude,1 ,buildingId, levelId, geofenceid);
                 mGeolockeIBeaconList.add(geolockeIBeacon);
                 mRssiList.add(rssi);
             }

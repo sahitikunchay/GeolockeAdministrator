@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="8dp"
+              >
+
+
+    <TextView
+        android:id="@+id/uuid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/macAddressView"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/latitudeView"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/longitudeView"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/organizationIdView"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buildingIdView"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/levelIdView"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sectionIdView"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/idView"
+        android:textSize="17dp"
+        android:textColor="@color/primary_dark_material_dark"/>
+
+</LinearLayout>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.acer.geolockeadministrator.ModificationActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Building"
+        android:id="@+id/buildingTextView"
+        android:textSize="20dp"
+        android:layout_marginTop="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level"
+        android:id="@+id/levelTextView"
+        android:layout_below="@+id/buildingTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section"
+        android:id="@+id/sectionTextView"
+        android:layout_below="@+id/levelTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp"
+        android:textSize="20dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/levelEditText"
+        android:layout_above="@+id/sectionTextView"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude"
+        android:id="@+id/Longitude"
+        android:layout_below="@+id/sectionTextView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="42dp"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Latitude"
+        android:id="@+id/latitude"
+        android:textSize="20dp"
+        android:layout_below="@+id/Longitude"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="36dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CONFIRM"
+        android:id="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/buildingInfoTextView"
+        android:textSize="20dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignBaseline="@+id/buildingTextView"
+        android:layout_alignBottom="@+id/buildingTextView"
+        android:layout_toEndOf="@+id/Longitude"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/levelInfoTextView"
+        android:layout_alignBottom="@+id/levelTextView"
+        android:layout_alignStart="@+id/buildingInfoTextView"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/sectionInfoTextView"
+        android:layout_alignBottom="@+id/sectionTextView"
+        android:layout_alignStart="@+id/levelInfoTextView"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/longitudeInfoTextView"
+        android:layout_alignBottom="@+id/Longitude"
+        android:layout_toEndOf="@+id/Longitude"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/latitudeInfoTextView"
+        android:layout_alignBottom="@+id/latitude"
+        android:layout_toEndOf="@+id/Longitude"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Bulding"
+        android:id="@+id/buildingChangeButton"
+        android:layout_above="@+id/levelTextView"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Level"
+        android:id="@+id/levelChangeButton"
+        android:layout_alignTop="@+id/levelEditText"
+        android:layout_alignEnd="@+id/sectionChangeButton"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Section"
+        android:id="@+id/sectionChangeButton"
+        android:layout_above="@+id/Longitude"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Lng"
+        android:id="@+id/longitudeChangeButton"
+        android:layout_above="@+id/latitude"
+        android:layout_alignEnd="@+id/sectionChangeButton"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chnage Lat"
+        android:id="@+id/latitudeChangeButton"
+        android:layout_alignBaseline="@+id/latitudeInfoTextView"
+        android:layout_alignBottom="@+id/latitudeInfoTextView"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
